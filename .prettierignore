@@ -1,0 +1,35 @@
+# Зависимости и лок-файлы
+node_modules
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Результаты сборки и кэш
+dist
+dist-ssr
+build
+coverage
+*.tsbuildinfo
+
+# Системные и редакторы
+.git
+.gitignore
+.vscode
+.idea
+.DS_Store
+
+# Логи
+*.log
+npm-debug.log*
+
+# Статика (опционально, но полезно, иногда Prettier ломает форматирование SVG или тратит на них много времени)
+*.svg
+*.png
+*.jpg
+*.jpeg
+*.woff
+*.woff2
+
+# Конфиги - чтобы оставить их в первозданном виде
+.prettierrc
+.stylelintrc.json

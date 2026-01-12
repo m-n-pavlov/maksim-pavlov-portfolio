@@ -1,0 +1,15 @@
+root = true # это корневой файл EditorConfig (выше искать не нужно)
+
+[*]
+charset = utf-8 # кодировка текста всегда UTF-8
+indent_style = space # использовать пробелы вместо табуляции
+indent_size = 2 # размер отступа (соответствует Prettier)
+end_of_line = lf # перенос строки (LF для Unix/macOS)
+insert_final_newline = true # всегда добавлять пустую строку в конце файла (стандарт POSIX)
+trim_trailing_whitespace = true # удалять невидимые пробелы в конце строк
+
+[*.md]
+trim_trailing_whitespace = false # сохраняем пробелы для переносов в Markdown-файлах
+
+[package.json]
+indent_size = 2 # 2 пробела для JSON (стандарт для манифестов npm)

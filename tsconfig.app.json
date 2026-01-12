@@ -1,28 +1,56 @@
 {
   "compilerOptions": {
-    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
-    "target": "ES2022",
-    "useDefineForClassFields": true,
-    "lib": ["ES2022", "DOM", "DOM.Iterable"],
-    "module": "ESNext",
-    "types": ["vite/client"],
-    "skipLibCheck": true,
 
-    /* Bundler mode */
-    "moduleResolution": "bundler",
-    "allowImportingTsExtensions": true,
-    "verbatimModuleSyntax": true,
-    "moduleDetection": "force",
-    "noEmit": true,
-    "jsx": "react-jsx",
+    /* Настройки виртуальных псевдонимов (алиасов - коротких путей) */
+    "baseUrl": ".", // "." означает, что корень проекта - это папка, где лежит сам tsconfig.json
+    "paths": {
+      "@/*": ["src/*"] // символ @ внутри кода будет всегда указывать на папку src
+    },
 
-    /* Linting */
-    "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "erasableSyntaxOnly": true,
-    "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true
+    /* Базовые настройки сборки */
+    "target": "ES2022", // во что компилировать (ES2022 поддерживает почти все современные фичи)
+    "module": "ESNext", // использовать самый современный стандарт модулей (import/export)
+    "moduleResolution": "bundler", // искать модули по правилам современных сборщиков (Vite, Webpack)
+    "jsx": "react-jsx", // поддержка JSX для React 17+ (не требует ручного импорта React в файлы)
+
+    /* Проверки и безопасность */
+    "strict": true, // включает все проверки типов сразу: делает код максимально безопасным и защищает от ошибок
+    "esModuleInterop": true, // позволяет корректно импортировать сторонние библиотеки, не поддерживающие ESM
+    "forceConsistentCasingInFileNames": true, // запрещает импорты с неправильным регистром (чтобы не было ошибок на Linux)
+    "skipLibCheck": true, // запрещает TS проверять ошибки файлов определений типов (.d.ts) во всех вложенных папках библиотек
+
+    /* Настройки JS */
+    "allowJs": false, // TS запрещает использование .js файлов
+    "checkJs": false, // TS не проверяет ошибки в .js файлах
+
+    /* Оптимизация и интеграция с Vite */
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo", // кэш для ускорения проверки
+    "useDefineForClassFields": true, // соответсвие современному стандарту работы полей в классах JS
+    "lib": ["ES2022", "DOM", "DOM.Iterable"], // набор библиотек (API), доступных в коде (JS + браузер)
+    "types": ["vite/client"], // типы для переменных окружения и статики Vite
+
+    /* Режим сборщика */
+    "noEmit": true, // только проверка типов, генерацию JS делает Vite
+    "allowImportingTsExtensions": true, // разрешает импорт с расширением .ts (при noEmit: true)
+    "verbatimModuleSyntax": true, // строгий синтаксис импортов (помогает удалять типы при сборке)
+    "moduleDetection": "force", // считать каждый файл модулем, чтобы избежать конфликтов имен
+
+    /* Линтинг (чистота кода) */
+    "noUnusedLocals": true, // включает ошибки, если переменная объявлена, но не используется
+    "noUnusedParameters": true, // включает ошибки, если в функцию передан аргумент, который не используется
+    "erasableSyntaxOnly": true, // запрещает сложные фичи TS, которые нельзя просто удалить (нужно для быстрых сборщиков)
+    "noFallthroughCasesInSwitch": true, // запрещает забывать 'break' в switch-case, чтобы код не шел в следующий блок
+    "noUncheckedSideEffectImports": true // проверяет наличие импортируемых CSS и других файлов без экспортов
   },
-  "include": ["src"]
+
+  // проверять и компилировать: весь исходный код и файл с описанием типов
+  "include": ["src", "src/types/images.d.ts"],
+  // НЕ проверять и НЕ компилировать: сторонние библиотеки и файлы тестов из итоговой сборки приложения
+  "exclude": [
+    "node_modules",
+    "**/*.test.ts",
+    "**/*.test.tsx",
+    "**/*.spec.ts",
+    "**/*.spec.tsx"
+  ]
 }
