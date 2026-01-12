@@ -1,18 +1,24 @@
 import js from '@eslint/js';
-import globals from 'globals';
-import tseslint from 'typescript-eslint';
+import eslintConfigPrettier from 'eslint-config-prettier';
+import jsxA11y from 'eslint-plugin-jsx-a11y';
+import reactPlugin from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
 import reactRefresh from 'eslint-plugin-react-refresh';
-import reactPlugin from 'eslint-plugin-react';
-import jsxA11y from 'eslint-plugin-jsx-a11y';
-import eslintConfigPrettier from 'eslint-config-prettier';
+import globals from 'globals';
+import tseslint from 'typescript-eslint';
 
 export default tseslint.config(
   {
     /* 1. Игнорируемые файлы (комбинация ваших и наставника) */
     ignores: [
-      'dist', 'build', 'node_modules', 'coverage',
-      '*.log', '.vscode', '.idea', '.DS_Store'
+      'dist',
+      'build',
+      'node_modules',
+      'coverage',
+      '*.log',
+      '.vscode',
+      '.idea',
+      '.DS_Store',
     ],
   },
 
@@ -40,7 +46,7 @@ export default tseslint.config(
       react: { version: 'detect' },
     },
     plugins: {
-      'react': reactPlugin,
+      react: reactPlugin,
       'react-hooks': reactHooks,
       'react-refresh': reactRefresh,
       'jsx-a11y': jsxA11y,
@@ -52,16 +58,13 @@ export default tseslint.config(
       ...jsxA11y.configs.recommended.rules,
 
       'react/react-in-jsx-scope': 'off', // Не нужно в современном React
-      'react/prop-types': 'off',        // Используем TS вместо prop-types
-      'no-console': 'warn',             // Не забываем console.log в коде
-      'eqeqeq': 'warn',                 // Только строгое сравнение ===
-      'curly': 'warn',                  // Обязательные {} для блоков if/for
+      'react/prop-types': 'off', // Используем TS вместо prop-types
+      'no-console': 'warn', // Не забываем console.log в коде
+      eqeqeq: 'warn', // Только строгое сравнение ===
+      curly: 'warn', // Обязательные {} для блоков if/for
 
       /* Правила Vite (из вашего конфига) */
-      'react-refresh/only-export-components': [
-        'warn',
-        { allowConstantExport: true },
-      ],
+      'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
 
       /* Настройки TS */
       '@typescript-eslint/no-unused-vars': 'warn',
