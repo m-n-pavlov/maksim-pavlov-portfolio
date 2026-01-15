@@ -1,0 +1,24 @@
+@use "normalize";
+@use "fonts";
+@use "variables";
+
+html,
+body {
+  font-family: var(--font-main), sans-serif;
+  font-optical-sizing: auto;
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-synthesis: none;
+  -webkit-text-size-adjust: 100%;
+  background-color: var(--bg-page);
+  min-height: 100dvh;
+  scroll-behavior: smooth;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+}

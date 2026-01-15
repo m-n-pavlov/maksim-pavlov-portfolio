@@ -13,6 +13,7 @@
     "format": "prettier --write \"**/*.{ts,tsx,scss,css,json,js,md}\""
   },
   "dependencies": {
+    "clsx": "^2.1.1",
     "react": "^19.2.0",
     "react-dom": "^19.2.0"
   },

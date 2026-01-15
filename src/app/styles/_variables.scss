@@ -1,0 +1,40 @@
+/* Базовые глобальные CSS-переменные для цветов, шрифтов и др. */
+
+/* Константы (Sass переменные) */
+$breakpoint-tablet: 768px; // точка перехода для планшета
+$breakpoint-desktop: 1200px; // точка перехода для десктопа
+
+/* Глобальные настройки (не зависят от темы) */
+:root {
+  --font-main: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  // ... здесь же можно хранить радиусы скруглений, отступы и так далее
+}
+
+/* Темная тема 🌙 (базовая, по умолчанию) */
+[data-theme='dark'] {
+  --bg-page: #1D2023;
+  --bg-header: rgba(35, 40, 45, 0.8);
+  --bg-surface: #23282D;
+
+  --text-primary: #ECECEC;
+  --text-secondary: #A4A4A4;
+  --text-accent: #4080ca;
+
+  --action-primary: #415A77;
+  --action-hover: #345377;
+}
+
+/* Светлая тема ☀️ (инверсия или новые цвета) */
+[data-theme='light'] {
+  --bg-page: #F5F5F5;
+  --bg-header: rgba(255, 255, 255, 0.8);
+  --bg-surface: #FFFFFF;
+
+  --text-primary: #1D2023;
+  --text-secondary: #666666;
+  --text-accent: #2e60a3;
+
+  --action-primary: #E0E0E0;
+  --action-hover: #D0D0D0;
+}

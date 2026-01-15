@@ -1,0 +1,10 @@
+/* Здесь мы только описываем «форму» данных */
+import { createContext } from 'react';
+import { Theme } from './Theme';
+
+export interface ThemeContextProps {
+  theme?: Theme;
+  setTheme?: (theme: Theme) => void;
+}
+
+export const ThemeContext = createContext<ThemeContextProps>({});

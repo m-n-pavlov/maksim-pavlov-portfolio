@@ -1,0 +1,17 @@
+@use "@/app/styles/variables" as v;
+
+.page {
+  width: 100%;
+  max-width: v.$breakpoint-desktop;
+  margin: 0 auto;
+  padding: 0 16px;
+  flex: 1;
+
+  .section {
+    padding: 60px 0;
+
+    @media (min-width: #{v.$breakpoint-tablet}) {
+      padding: 100px 0;
+    }
+  }
+}

@@ -1,0 +1,291 @@
+/* Нормализация и сброс стилей */
+
+/* 1️⃣ Базовая настройка документа */
+
+/**
+ * Применяем border-box ко всем элементам
+ * для удобного расчета размеров.
+ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/**
+ * 1 - исправляем высоту строки во всех браузерах
+ * 2 - предотвращаем изменение размера шрифта после смены ориентации в iOS
+ * 3 - резервируем место под скроллбар, чтобы интерфейс не «прыгал» при его появлении
+ * 4 - обеспечиваем лавную прокрутку для якорных ссылок
+ * 5 - гарантируем, что html занимает всю высоту для прижатия футера
+ */
+html {
+  line-height: 1.15; /* 1 */
+  -webkit-text-size-adjust: 100%; /* 2 */
+  scrollbar-gutter: stable; /* 3 */
+  scroll-behavior: smooth; /* 4 */
+  height: 100%; /* 5 */
+}
+
+/**
+ * 1 - удаляем стандартные отступы браузера
+ * 2 - задаём минимальную высоту для корректной работы макетов
+ * 3 - задаём унифицированный интерлиньяж для лучшей читаемости
+ * 4 - убираем подсветку ссылок/кнопок при нажатии на мобильных устройствах
+ */
+body {
+  margin: 0; /* 1 */
+  min-height: 100%; /* 2 */
+  line-height: 1.5; /* 3 */
+  -webkit-tap-highlight-color: transparent; /* 4 */
+}
+
+/* 2️⃣ Секции и блочная модель */
+
+/**
+ * Сбрасываем вертикальные внешние отступы у типографических
+ * и блочных элементов только при наличии класса,
+ * используем :where(), чтобы сохранить специфичность
+ * и легко переопределять стили
+ */
+:where(h1, h2, h3, h4, h5, h6, p, ul, ol, dl, blockquote, figure, fieldset):where([class]) {
+  margin-block: 0;
+}
+
+/**
+ * Сбрасываем жирность и размер заголовков
+ * до наследуемых от родителя
+ */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: inherit;
+  font-size: inherit;
+}
+
+/**
+ * Сбрасываем внешние отступы параграфов
+ */
+p {
+  margin: 0;
+}
+
+/* 3️⃣ Списки */
+
+/**
+ * Убираем маркеры и внутренние отступы у списков,
+ * если им задан класс
+ */
+:where(ul, ol):where([class]) {
+  list-style: none;
+  padding: 0;
+}
+
+/* 4️⃣ Текстовые элементы */
+
+/**
+ * Убираем стандартное подчеркивание и цвет
+ * для всех элементов ссылки
+ */
+a {
+  text-decoration: none;
+  color: inherit;
+  background-color: transparent;
+}
+
+/**
+ * Делаем элементы ссылки с классом инлайновым флекс-контейнером
+ * для лучшего выравнивания
+ */
+a:where([class]) {
+  display: inline-flex;
+}
+
+/**
+ * Исправляем жирность в Chrome, Edge и Safari
+ */
+b,
+strong {
+  font-weight: bolder;
+}
+
+/**
+ * Исправляем наследование шрифта и его размер во всех браузерах
+ */
+code,
+kbd,
+samp,
+pre {
+  font-family: monospace, monospace;
+  font-size: 1em;
+}
+
+/**
+ * Устанавливаем единый размер для маленького текста
+ */
+small {
+  font-size: 80%;
+}
+
+/**
+ * Позиционируем sub и sup так,
+ * чтобы они не влияли на высоту строки
+ */
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+sub {
+  bottom: -0.25em;
+}
+sup {
+  top: -0.5em;
+}
+
+/* 5️⃣ Медиа-контент */
+
+/**
+ * Делаем медиа-элементы блочными и адаптивными
+ */
+img,
+video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/**
+ * Исправляем границу изображений внутри ссылок в IE 10
+ */
+img {
+  border-style: none;
+}
+
+/* 6️⃣ Формы и интерактивные элементы */
+
+/**
+ * Наследуем шрифты и цвет, убираем дефолтные отступы,
+ * сбрасываем стандартный вид для кастомизации
+ */
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit;
+  font-size: 100%;
+  line-height: 1.15;
+  margin: 0;
+  color: inherit;
+  background: none;
+  border: none;
+  outline: none;
+}
+
+/**
+ * Убираем наследование трансформации текста
+ */
+button,
+select {
+  text-transform: none;
+}
+
+/**
+ * 1 - исправляем невозможность стилизации кликабельных типов в iOS и Safari
+ * 2 - указываем курсор при наведении
+ */
+button,
+[type='button'],
+[type='reset'],
+[type='submit'] {
+  -webkit-appearance: button; /* 1 */
+  cursor: pointer; /* 2 */
+}
+
+/**
+ * Убираем внутренние отступы и границы в Firefox
+ */
+button::-moz-focus-inner,
+[type='button']::-moz-focus-inner,
+[type='reset']::-moz-focus-inner,
+[type='submit']::-moz-focus-inner {
+  border-style: none;
+  padding: 0;
+}
+
+/**
+ * 1 - убираем стандартный вертикальный скроллбар в IE
+ * 2 - разрешаем изменять размер только вертикально
+ */
+textarea {
+  overflow: auto; /* 1 */
+  resize: vertical; /* 2 */
+}
+
+/**
+ * Обнуляем рамки и отступы для элементов fieldset с классом
+ */
+fieldset {
+  padding: 0;
+  border: none;
+}
+
+/* 7️⃣ Таблицы */
+
+/**
+ * Приводим таблицы к схлопывающимся рамкам
+ */
+:where(table) {
+  border-collapse: collapse;
+  border-color: currentColor;
+}
+
+/* 8️⃣ SVG */
+
+/**
+ * Приводим цвета заливки и обводки SVG-элементов
+ * к currentColor, если не указано иное
+ */
+:where([fill]:not([fill='none'], [fill^='url'])) {
+  fill: currentColor;
+}
+:where([stroke]:not([stroke='none'], [stroke^='url'])) {
+  stroke: currentColor;
+}
+
+/**
+ * Обеспечиваем плавную смену цвета для SVG-элементов
+ */
+svg * {
+  transition-property: fill, stroke;
+}
+
+/* 9️⃣ Доступность */
+
+/**
+ * Отключаем анимации для пользователей,
+ * которые предпочитают их не использовать
+ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/**
+ * Скрываем элементы, у которых есть атрибут [hidden]
+ */
+[hidden] {
+  display: none;
+}

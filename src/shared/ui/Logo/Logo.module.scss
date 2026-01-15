@@ -1,0 +1,24 @@
+@keyframes blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+.logo {
+  display: inline-flex; // для точного выравнивания символа | (пайп) и текста
+  align-items: center; // для точного выравнивания символа | (пайп) и текста
+  font-family: var(--font-mono), monospace;
+  font-weight: 550;
+  font-size: 1.25rem;
+  white-space: nowrap; // запрещаем перенос на мобилке
+
+  .cursor {
+    color: var(--text-accent);
+    margin-left: 0.25em;
+    animation: blink 1s steps(1, end) infinite;
+    user-select: none; // запрещаем выделение символа мышкой
+  }
+  &:hover .cursor {
+    animation: none; // Замирает при наведении (как вариант интересного UX)
+    opacity: 1;
+  }
+}
