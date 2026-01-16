@@ -179,10 +179,11 @@ optgroup,
 select,
 textarea {
   font-family: inherit;
-  font-size: 100%;
-  line-height: 1.15;
-  margin: 0;
+  font-size: inherit;
+  line-height: 1.5;
   color: inherit;
+  font-weight: inherit; // добавил сам
+  margin: 0;
   background: none;
   border: none;
   outline: none;
@@ -246,25 +247,25 @@ fieldset {
   border-color: currentColor;
 }
 
-/* 8️⃣ SVG */
-
-/**
- * Приводим цвета заливки и обводки SVG-элементов
- * к currentColor, если не указано иное
- */
-:where([fill]:not([fill='none'], [fill^='url'])) {
-  fill: currentColor;
-}
-:where([stroke]:not([stroke='none'], [stroke^='url'])) {
-  stroke: currentColor;
-}
-
-/**
- * Обеспечиваем плавную смену цвета для SVG-элементов
- */
-svg * {
-  transition-property: fill, stroke;
-}
+///* 8️⃣ SVG */
+//
+///**
+// * Приводим цвета заливки и обводки SVG-элементов
+// * к currentColor, если не указано иное
+// */
+//:where([fill]:not([fill='none'], [fill^='url'])) {
+//  fill: currentColor;
+//}
+//:where([stroke]:not([stroke='none'], [stroke^='url'])) {
+//  stroke: currentColor;
+//}
+//
+///**
+// * Обеспечиваем плавную смену цвета для SVG-элементов
+// */
+//svg * {
+//  transition-property: fill, stroke;
+//}
 
 /* 9️⃣ Доступность */
 

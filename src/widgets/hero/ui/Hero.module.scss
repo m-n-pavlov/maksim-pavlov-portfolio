@@ -1,0 +1,142 @@
+@use "@/app/styles/variables" as v;
+
+.section {
+  min-height: 100dvh;
+  scroll-margin-top: var(--header-height);
+  padding-block: calc(var(--spacing-section) + 1.5rem); // + var(--header-height) заменил на + 1.5rem
+
+  @media (min-width: #{v.$breakpoint-tablet}) {
+    min-height: auto;
+  }
+}
+
+.content {
+  display: grid;
+  gap: var(--spacing-card);
+  grid-template-areas:
+    "avatar"
+    "title"
+    "summary";
+  padding: var(--padding-card);
+
+  @media (min-width: #{v.$breakpoint-tablet}) {
+    grid-template-columns: auto 1fr 1fr; // было grid-template-columns: repeat(3, 1fr);
+    grid-template-areas:
+      "avatar title title"
+      "summary summary summary";
+  }
+}
+
+.avatarWrapper {
+  grid-area: avatar;
+  display: flex;
+  justify-content: center;
+
+  .avatar {
+    width: clamp(180px, 14.5vw + 8.5rem, 280px);
+    height: auto;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: 50% 30%;
+    background-color: var(--bg-surface);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  }
+}
+
+.titleWrapper {
+  grid-area: title;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  @media (min-width: #{v.$breakpoint-tablet}) {
+    justify-content: flex-end;
+    align-items: flex-start;
+    text-align: left;
+  }
+}
+
+.title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-m); // 1rem
+
+  @media (min-width: #{v.$breakpoint-tablet}) {
+    align-items: flex-start;
+  }
+
+  .nameWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: inherit;
+    line-height: 1;
+
+    .firstName {
+      font-size: clamp(2.5rem, 8vw, 3rem);
+    }
+
+    .lastName {
+      font-size: clamp(4rem, 12vw, 5rem);
+      color: var(--text-accent);
+      margin-left: -2px;
+    }
+  }
+
+  .tagline {
+    color: var(--text-primary);
+    margin-left: 2px;
+    font-weight: 300;
+  }
+}
+
+.summaryWrapper {
+  grid-area: summary;
+  margin-top: var(--spacing-m); // 1rem
+
+  @media (min-width: #{v.$breakpoint-tablet}) {
+    border-left: 1px solid var(--text-accent);
+    padding-left: 2rem;
+    margin-top: var(--spacing-l);;
+  }
+
+  .summary {
+    font-weight: 300; // вес шрифта
+    color: var(--text-secondary);
+    font-style: italic;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.avatarWrapper,
+.titleWrapper,
+.summaryWrapper {
+  opacity: 0;
+  animation: fadeInUp 0.8s var(--transition-curve) forwards;
+  will-change: transform, opacity;
+}
+
+.avatarWrapper {
+  animation-delay: 0.2s;
+}
+
+.titleWrapper {
+  animation-delay: 0.4s;
+}
+
+.summaryWrapper {
+  animation-delay: 0.6s;
+}

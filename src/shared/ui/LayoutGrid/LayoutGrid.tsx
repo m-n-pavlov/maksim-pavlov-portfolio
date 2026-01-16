@@ -4,8 +4,8 @@ import s from './LayoutGrid.module.scss';
 
 interface LayoutGridProps {
   children: ReactNode;
-  columns?: Partial<Responsive<number>>;
-  gap?: string | Partial<Responsive<string>>;
+  columns?: Responsive<number>;
+  gap?: string | Responsive<string>;
 }
 
 /**

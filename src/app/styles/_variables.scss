@@ -1,17 +1,55 @@
-/* Базовые глобальные CSS-переменные для цветов, шрифтов и др. */
+/**
+ * SASS Variables (тут объявляем SASS-значения)
+ * - вычисляются во время сборки (на компьютере)
+ * - статичны после компиляции
+ * - область видимости: только внутри SASS-файлов
+ */
 
-/* Константы (Sass переменные) */
-$breakpoint-tablet: 768px; // точка перехода для планшета
-$breakpoint-desktop: 1200px; // точка перехода для десктопа
+/* Брейкпоинты */
+$breakpoint-tablet: 768px;
+$breakpoint-desktop: 1200px;
 
-/* Глобальные настройки (не зависят от темы) */
-:root {
-  --font-main: 'Inter', sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
-  // ... здесь же можно хранить радиусы скруглений, отступы и так далее
-}
+/* Z-индексы */
+$z-index-header: 100; // для Header
+$z-index-portal: 200; // для мобильного меню (рендеринг через React Portal)
 
-/* Темная тема 🌙 (базовая, по умолчанию) */
+/* Шрифты */
+$font-main: 'Inter', sans-serif;
+$font-mono: 'JetBrains Mono', monospace;
+
+/* Размер шрифтов */
+$font-size-s: 0.875rem; // 14px
+$font-size-m: 1rem; // 16px (базовый)
+$font-size-l: 1.25rem; // 20px
+$font-size-xl: 2rem; // 32px
+
+/* Высота Header */
+$header-height: 4.5rem;
+
+/* Отступы (для виджетов) */
+$spacing-section-mobile: 1rem;
+$spacing-section-tablet: 1.5rem;
+$spacing-section-desktop: 2rem;
+
+/* Отступы (для карточек) */
+$spacing-card-mobile: 1rem;
+$spacing-card-tablet-plus: 1.5rem;
+
+/* Отступы (для карточек, внутренние) */
+$padding-card-mobile: 1rem;
+$padding-card-tablet-plus: 1.5rem;
+
+/* Универсальная сетка отступов */
+$spacing-s: 0.5rem;
+$spacing-m: 1rem;
+$spacing-l: 1.5rem;
+$spacing-xl: 3rem;
+
+/* Анимация */
+$transition-duration: 0.3s; // длительность
+$transition-curve: cubic-bezier(0.4, 0, 0.2, 1); // кривая (функция)
+
+/* Стили тёмной темы 🌙 (базовая, по умолчанию) */
 [data-theme='dark'] {
   --bg-page: #1D2023;
   --bg-header: rgba(35, 40, 45, 0.8);
@@ -23,11 +61,19 @@ $breakpoint-desktop: 1200px; // точка перехода для дескто�
 
   --action-primary: #415A77;
   --action-hover: #345377;
+
+  --tags-bg: #343b53;
+
+  --icon-main-color: #fff;
+  --icon-accent-color: #f44250;
+
+  --icon-socials-content-color: #1D2023; // кот
+  --icon-socials-bg-color: #ECECEC; // фон
 }
 
-/* Светлая тема ☀️ (инверсия или новые цвета) */
+/* Стили светлой темы ☀️ (инверсия или новые цвета) */
 [data-theme='light'] {
-  --bg-page: #F5F5F5;
+  --bg-page: #ECECEC;
   --bg-header: rgba(255, 255, 255, 0.8);
   --bg-surface: #FFFFFF;
 
@@ -37,4 +83,12 @@ $breakpoint-desktop: 1200px; // точка перехода для дескто�
 
   --action-primary: #E0E0E0;
   --action-hover: #D0D0D0;
+
+  --tags-bg: #9aadcd;
+
+  --icon-main-color: #121212;
+  --icon-accent-color: #f44250;
+
+  --icon-socials-content-color: #ECECEC; // кот (контент)
+  --icon-socials-bg-color: #1D2023; // фон
 }

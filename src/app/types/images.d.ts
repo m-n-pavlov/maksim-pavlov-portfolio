@@ -1,0 +1,45 @@
+/**
+ * Декларация типов для статических графических ресурсов
+ * - позволяет TypeScript корректно обрабатывать импорты файлов изображений,
+ *   интерпретируя их как строковые пути (URL)
+ */
+
+declare module '*.svg' {
+  const content: string
+  export default content
+}
+
+declare module '*.png' {
+  const content: string
+  export default content
+}
+
+declare module '*.jpg' {
+  const content: string
+  export default content
+}
+
+declare module '*.jpeg' {
+  const content: string
+  export default content
+}
+
+declare module '*.gif' {
+  const content: string
+  export default content
+}
+
+declare module '*.webp' {
+  const content: string
+  export default content
+}
+
+declare module '*.ico' {
+  const content: string
+  export default content
+}
+
+declare module '*.webmanifest' {
+  const content: string
+  export default content
+}

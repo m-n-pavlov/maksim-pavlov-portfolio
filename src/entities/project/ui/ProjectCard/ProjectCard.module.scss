@@ -1,0 +1,167 @@
+@use "@/app/styles/variables" as v;
+
+/** Обертка всей карточки проекта */
+.card {
+  background-color: var(--bg-surface); // задает фон
+  border-radius: 1rem; // скругляет углы
+  padding: var(--content-padding); // задает внутренний падинг для контента
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.6); // имеет тень
+}
+
+/** Обертка содержимого карточки - управляет композицией контента */
+.content {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-xl);
+  padding: var(--padding-card);
+
+  grid-template-areas:
+    "preview"
+    "description";
+
+  @media (min-width: #{v.$breakpoint-tablet}) {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-areas:
+      "preview description description";
+  }
+}
+
+/** Обертка блока с картинкой и ссылками */
+.previewWrapper {
+  grid-area: preview;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-l); // расстояние между GIF и ссылками
+  margin-inline: 0; // явно убирает отступы слева/справа у тега figure
+}
+
+/** Сама картинка */
+.image {
+  width: 100%; // позволяет картинке занять все ширину своей колонки
+  aspect-ratio: 16 / 9; // задает соотношение сторон в 16 на 9
+//  object-fit: cover; // позволяет картинке заполнить всю область и обрезать лишнее
+//  border-radius: 8px; // скругляет углы картинки
+//  object-position: 50% 0; // корректирует смещение картинки
+  max-height: 320px; // защита от слишком больших оригиналов
+//  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.6); // тени
+}
+
+/** Контейнер для ссылок под картинкой */
+.actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacing-l);
+}
+
+/** Сами ссылки под картинкой */
+.externalLink {
+  display: flex; // позволит вставить иконку перехода по внешней ссылке вместо заглушки
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacing-s);
+  font-size: var(--font-size-s);
+  transition: all var(--transition-duration) var(--transition-curve);
+  color: var(--text-secondary);
+
+  .linkLabel {
+    text-transform: uppercase;
+  }
+
+  .linkIcon {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    display: block;
+  }
+
+  &:hover {
+    color: var(--text-accent);
+  }
+}
+
+/** Обертка блока с описанием */
+.descriptionWrapper {
+  grid-area: description;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-m);
+}
+
+/** Контейнер для заголовка и описания */
+.headerWrapper {
+  display: flex; // позволяет управлять расстоянием между заголовком и его описанием
+  flex-direction: column;
+}
+
+/** Сам заголовок */
+.title {
+  color: var(--text-accent);
+  font-weight: 600;
+  font-size: var(--font-size-l);
+}
+
+/** Текст описания */
+.description {
+  color: var(--text-secondary);
+  font-size: var(--font-size-s);
+}
+
+/** ✅Секция иконок технологий */
+.techStackWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-s);
+}
+
+/** ✅Контейнер под каждую иконку */
+.techStackItem {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: var(--bg-page);
+  box-shadow: 2px 2px 7px black;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all var(--transition-duration) var(--transition-curve);
+
+  &:hover {
+    border-color: var(--text-accent);
+  }
+
+  /** ✅Сама иконка в виде компонента */
+  .techIcon {
+    width: 28px;
+    height: 28px;
+    flex-shrink: 0; // Защита от сжатия
+  }
+}
+
+/** ✅Список используемых технологий */
+.featuresList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-s);
+  font-size: var(--font-size-m);
+
+  /** ✅Элемент списка */
+  .featureItem {
+    position: relative;
+    padding-left: 1.25rem; // отступ под буллит
+    line-height: 1.5; // фиксированный line-height для точного расчета центра
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.55em; // центрирование относительно первой строки текста
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: var(--text-accent);
+    }
+  }
+}

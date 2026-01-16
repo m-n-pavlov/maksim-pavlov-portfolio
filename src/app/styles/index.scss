@@ -1,11 +1,63 @@
 @use "normalize";
 @use "fonts";
-@use "variables";
+@use "variables" as v;
+
+/**
+ * CSS Variables (тут пробрасываем SASS-значения в CSS-токены)
+ * - вычисляются во время рендеринга (в браузере)
+ * - могут меняться через Media Queries или JS
+ * - область видимости: везде в DOM-дереве (наследуются)
+ */
+
+:root {
+
+  /* Шрифты */
+  --font-main: #{v.$font-main};
+  --font-mono: #{v.$font-mono};
+
+  /* Размер шрифтов */
+  --font-size-s: #{v.$font-size-s};
+  --font-size-m: #{v.$font-size-m};
+  --font-size-l: #{v.$font-size-l};
+  --font-size-xl: #{v.$font-size-xl};
+
+  /* Высота Header */
+  --header-height: #{v.$header-height};
+
+  /* Отступы для виджетов и карточек */
+  --spacing-section: #{v.$spacing-section-mobile};
+  --spacing-card: #{v.$spacing-card-mobile};
+  --padding-card: #{v.$padding-card-mobile};
+
+  @media (min-width: #{v.$breakpoint-tablet}) {
+    --spacing-section: #{v.$spacing-section-tablet};
+    --spacing-card: #{v.$spacing-card-tablet-plus};
+    --padding-card: #{v.$padding-card-tablet-plus};
+  }
+
+  @media (min-width: #{v.$breakpoint-desktop}) {
+    --spacing-section: #{v.$spacing-section-desktop};
+  }
+
+  /* Универсальная сетка отступов */
+  --spacing-s: #{v.$spacing-s};
+  --spacing-m: #{v.$spacing-m};
+  --spacing-l: #{v.$spacing-l};
+  --spacing-xl: #{v.$spacing-xl};
+
+  /* Анимация */
+  --transition-duration: #{v.$transition-duration};
+  --transition-curve: #{v.$transition-curve};
+
+}
 
 html,
 body {
+  height: 100%; // требуется для применения flex на root (что в свою очередь необходимо для flex: 1 для main)
+  margin: 0;
   font-family: var(--font-main), sans-serif;
-  font-optical-sizing: auto;
+  font-size: var(--font-size-m);
+  font-weight: 300;
   color: var(--text-primary);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -13,12 +65,12 @@ body {
   font-synthesis: none;
   -webkit-text-size-adjust: 100%;
   background-color: var(--bg-page);
-  min-height: 100dvh;
   scroll-behavior: smooth;
+  font-optical-sizing: auto;
 }
 
 #root {
   display: flex;
   flex-direction: column;
-  min-height: 100dvh;
+  min-height: 100%; // использует высоту html/body
 }

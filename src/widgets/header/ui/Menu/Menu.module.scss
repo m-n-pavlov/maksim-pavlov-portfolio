@@ -1,16 +1,84 @@
-/* Семантический ul-контейнер для элементов меню */
+@use "@/app/styles/variables" as v;
+
+/** Контейнер для элементов меню, общие стили */
 .menuList {
   display: flex; // layout для элементов меню
-  gap: 2rem; // расстояние между элементами меню
-  white-space: nowrap; // запрещаем перенос строк
 }
 
-/* Элемент ссылки */
-.link {
-  font-weight: 300; // чуть тоньше стандартных 400
-  transition: color 0.2s ease; // плавное изменение цвета
+/** Если родитель имеет класс desktopMenu */
+.desktopMenu {
+  .menuList {
+    flex-direction: row;
+    gap: 2rem;
+  }
+}
 
-  &:hover {
-    color: var(--text-accent); // акцентный цвет при наведении
+/** Если родитель имеет класс mobileMenu */
+.mobileMenu {
+  .menuList {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    font-size: var(--font-size-xl);
+  }
+}
+
+/** Элемент меню (ссылка) */
+.link {
+  position: relative; // для позиционирования псевдоэлемента
+  display: inline-block; // увеличиваем область клика и стабильность transform
+  color: var(--text-primary); // явно указываем базовое состояние
+  font-weight: 300; // чуть тоньше стандартного в 400
+  -webkit-tap-highlight-color: transparent; // убираем мобильный "синий квадрат"
+  user-select: none; // запрещаем пользователю случайно выделить текст ссылки
+  transition: color var(--transition-duration) var(--transition-curve);
+
+  /**
+   * Декоративный псевдоэлемент, анимируем transform (scale), а не width
+   * - это не вызывает пересчет геометрии (reflow), только перерисовку (repaint)
+   */
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -4px; // отступ для читаемости текста
+    width: 100%; // ширина = ширине ссылки
+    height: 1px; // тонкая изящная линия в 1px
+    background-color: var(--text-accent); // акцентный цвет
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform var(--transition-duration) var(--transition-curve);
+    will-change: transform; // подсказка браузеру подготовить GPU
+  }
+
+  /** Разделение логики - Hover (только для мыши) */
+  @media (hover: hover) {
+    &:hover {
+      color: var(--text-accent);
+
+      &::after {
+        transform: scaleX(1);
+        transform-origin: left;
+      }
+    }
+  }
+
+  /** Разделение логики - Touch-устройства */
+  @media (hover: none) {
+    &:active {
+      color: var(--text-accent);
+      transition: none;
+    }
+  }
+
+  /** Доступность (A11y) */
+  &:focus {
+    outline: none; // Скрываем дефолт для Safari/Chrome при клике
+  }
+
+  &:focus-visible {
+    border-radius: 4px;
+    outline: 2px solid var(--text-accent);
+    outline-offset: 4px;
   }
 }

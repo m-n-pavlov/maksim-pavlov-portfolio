@@ -1,41 +1,64 @@
+/**
+ * Импорт глобальных переменных
+ * - @use обеспечивает изоляцию стилей (в отличие от @import)
+ * - 'as v' создает пространство имен для чистого обращения к переменным,
+   например: v.$breakpoint-desktop
+ */
 @use "@/app/styles/variables" as v;
 
+/** Корневой контейнер компонента Header */
 .header {
-  width: 100%;
-  height: 4.5rem;
-  background-color: var(--bg-header);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px); /* Для Safari */
-  border-bottom: 1px solid var(--text-accent);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  display: flex;
-  justify-content: center;
+  width: 100%; // занимает всю доступную ширину body
+  height: 4.5rem; // высота в 72px
+  background-color: var(--bg-header); // фоновая заливка
+  backdrop-filter: blur(10px); // эффект матового стекла (размытие фона за шапкой)
+  -webkit-backdrop-filter: blur(10px); // поддержка для Safari
+//  border-bottom: 1px solid var(--text-accent); // нижняя граница
+  position: sticky; // фиксация шапки при скролле
+  top: 0; // прижать к верхнему краю экрана
+  z-index: v.$z-index-header; // слой поверх остального контента
+  box-shadow: 0 5px 15px -5px rgba(0, 0, 0, 0.4);
 }
 
+/** Общий контейнер для дочерних компонентов
+ * - ограничивает содержимое в 1168px (за вычетом padding)
+ */
 .container {
-  width: 100%;
-  max-width: v.$breakpoint-desktop;
-  padding: 0 16px;
-  display: flex;
-  align-items: center;
+  width: 100%; // занимает всю ширину Header
+  height: 100%; // занимает всю высоту Header
+  max-width: v.$breakpoint-desktop; // ограничение контентной области
+  margin: 0 auto; // центрирование контейнера
+  padding: 0 var(--spacing-l); // guard-отступы у краев экрана
+  display: flex; // layout для выравнивания дочерних элементов
+  align-items: center; // центрирует их по вертикали
 }
 
+/** Класс для компонента Logo, передаваемый в виде пропа */
 .logo {
-  flex: 1;
+  flex: 1; // занимает доступное пространство слева для баланса сетки
   display: flex;
-  justify-content: flex-start;
+  justify-content: flex-start; // прижимает логотип к левому краю
 }
 
+/** Класс для компонента Menu, передаваемый в виде пропа */
 .menu {
-  flex: 0; // благодаря flex: 1 у соседей (логотип и контейнер с переключателями), меню всегда будет в центре header
-  display: flex; // задает layout дочерним элементам
-  justify-content: center; // дочерние элементы по центру относительно основной оси
+  @media (max-width: 768px) {
+    display: none; // скрываем десктопную навигацию на мобильных устройствах
+  }
 }
 
-.switcher {
-  flex: 1;
-  display: flex;
-  justify-content: flex-end;
+/** Собственные стили контейнера с переключателем темы и бургер-иконкой */
+.actions {
+  flex: 1; // занимает доступное пространство справа для баланса сетки
+  display: flex; // flex-контейнер
+  justify-content: flex-end; // прижимаем иконки к правому краю
+  align-items: center; // выравниваем иконки по вертикали
+  gap: 1rem; // задаём расстояние между иконками
+}
+
+/** Класс для компонента BurgerButton, передаваемый в виде пропа */
+.burger {
+  @media (min-width: 769px) {
+    display: none; // скрываем бургер-меню на десктопе
+  }
 }

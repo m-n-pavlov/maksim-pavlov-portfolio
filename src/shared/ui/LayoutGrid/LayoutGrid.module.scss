@@ -6,17 +6,17 @@
 
   // Мобильные устройства (по умолчанию)
   gap: var(--gap-mobile);
-  grid-template-columns: repeat(var(--cols-mobile), 1fr);
+  grid-template-columns: repeat(var(--cols-mobile), minmax(0, 1fr));
 
   // Планшеты (от 768px)
   @media (min-width: #{v.$breakpoint-tablet}) {
     gap: var(--gap-tablet);
-    grid-template-columns: repeat(var(--cols-tablet), 1fr);
+    grid-template-columns: repeat(var(--cols-tablet), minmax(0, 1fr));
   }
 
   // Десктопы (от 1200px)
   @media (min-width: #{v.$breakpoint-desktop}) {
     gap: var(--gap-desktop);
-    grid-template-columns: repeat(var(--cols-desktop), 1fr);
+    grid-template-columns: repeat(var(--cols-desktop), minmax(0, 1fr));
   }
 }

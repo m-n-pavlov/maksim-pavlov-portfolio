@@ -1,0 +1,115 @@
+@use "@/app/styles/variables" as v;
+
+.section {
+  padding-inline: 1rem;
+  padding-top: var(--spacing-section);
+  padding-bottom: calc(var(--spacing-section) / 1.5);
+
+  @media (min-width: #{v.$breakpoint-tablet}) {
+    padding-bottom: calc(var(--spacing-section) + 1.5rem);
+  }
+
+  @media (min-width: #{v.$breakpoint-desktop}) {
+    padding-bottom: calc(var(--spacing-section) + 2.5rem);
+  }
+}
+
+.visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.content {
+  width: 100%;
+  max-width: calc(#{v.$breakpoint-desktop} - 32px); // 1200px
+  margin: 0 auto;
+  background-color: var(--bg-surface);
+  border-radius: 1rem;
+  padding: var(--padding-card);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-xl);
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.4);
+
+  @media (min-width: #{v.$breakpoint-tablet}) {
+    grid-template-columns: 1fr 1fr; // Две равные колонки
+    align-items: stretch; // Растягиваем welcome и socials на одну высоту
+  }
+}
+
+.welcome {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: left;
+
+  .title {
+    font-size: var(--font-size-xl);
+    line-height: 1.1;
+
+    .accent {
+      display: block;
+      color: var(--text-accent);
+    }
+  }
+
+  .availability {
+    margin-top: var(--spacing-l);
+    font-size: var(--font-size-s);
+  }
+}
+
+.socials {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  @media (min-width: #{v.$breakpoint-tablet}) {
+    align-items: flex-end;
+    text-align: right;
+  }
+
+  .socialsList {
+    display: flex;
+    gap: var(--spacing-m);
+    justify-content: flex-start;
+
+    @media (min-width: #{v.$breakpoint-tablet}) {
+      justify-content: flex-end;
+    }
+  }
+
+  .copyright {
+    margin-top: var(--spacing-l);
+    color: var(--text-secondary);
+    font-size: var(--font-size-s);
+  }
+}
+
+.socialsLink {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background-color: var(--bg-page);
+  color: var(--text-primary);
+  transition: color var(--transition-duration) var(--transition-curve);
+
+  &:hover {
+    color: var(--text-accent);
+  }
+}
+
+.socialsIcon {
+  width: 28px;
+  height: 28px;
+}

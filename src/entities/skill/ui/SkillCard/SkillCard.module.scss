@@ -1,0 +1,130 @@
+@use "@/app/styles/variables" as v;
+
+/** Вся бенто-карточка целиком */
+.card {
+  background-color: var(--bg-surface); // фон карточки
+  border-radius: 1rem; // скругление углов
+  padding: var(--padding-card);
+  display: flex; // флекс нужен для того, чтобы заголовок карточки был сверху, контент снизу
+  flex-direction: column; // заголовок и контент в колонку
+  gap: var(--spacing-l); // 1.5rem
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.4);
+}
+
+/** Заголовок конкретной бенто-карточки */
+.title {
+  color: var(--text-accent);
+  font-weight: 600;
+  font-size: var(--font-size-l);
+}
+
+/** Подзаголовок конкретной бенто-карточки */
+.subTitle {
+  color: var(--text-secondary);
+  font-weight: 300;
+  font-size: var(--font-size-s);
+}
+
+/**
+ * Индивидуальные стили для элементов (групп с тегами) карточек Hard Skills и Tools
+ * - и в том и в другом случае блок - это grid-контейнер
+ * - но в зависимости от переменной в Hard Skills 2 колонки, в Tools 1 колонка
+ * - gap в 1rem (16px) для Hard Skills сработает для колонок с строк, для Tools - только для строк
+ */
+.gridView {
+  display: grid;
+  grid-template-columns: repeat(var(--card-columns, 1), 1fr);
+  gap: var(--spacing-l); // 1.5rem
+}
+
+/**
+ * Индивидуальные стили для элементов (тезисов) карточек Soft Skills и Fintech
+ * - и в том и в другом случае блок - это flex-контейнер, в колонку
+ * - расстояние между тезисами в 1rem (16px)
+ */
+.flexView {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-s); // 0.5rem
+}
+
+/**
+ * Индивидуальные стили для элемента (конкретной группы с тегами) карточек Hard Skills и Tools
+ * - флекс в колонку позволяет расставить заголовок/теги/описание сверху-вниз
+ * - gap задает расстояние между ними в 1rem (16px)
+ * - border-radius добавляет группе скругление (⚠️видно только при наличии границы или фоновой заливки)
+ * - background-color добавляет группе фон (️️️⚠️нужен только если будет отличаться, сейчас никак не влияет)
+ * - padding топит содержимое внутрь на 1rem (16px)
+ * - border (⚠️нужно подумать)
+ */
+.withSkills {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-m); // 1rem
+  border-radius: 1rem;
+  background-color: var(--bg-page);
+  padding: var(--spacing-m);
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.4);
+}
+
+/** Заголовок конкретной группы с тегами (только для карточек Hard Skills и Tools) */
+.label {
+  margin-block: 0; // указываем явно, чтобы поднять специфичность перед браузерными стилями и перекрыть normalize
+  color: var(--text-secondary);
+}
+
+/**
+ * Индивидуальные стили для элемента (конкретного тезиса) карточек Soft Skills и Fintech
+ * - пока используется только для задания размера шрифта (⚠️)
+ */
+.withoutSkills {
+//  font-size: 12.825rem !important;
+}
+
+/** Контейнер для тегов */
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-s); // 0.5rem (расстояние между тегами)
+
+}
+
+/** Стили самого тега */
+.tag {
+  padding: 0.4rem;
+  font-size: var(--font-size-s);
+  border-radius: 6px;
+  line-height: 1;
+  background-color: var(--tags-bg);
+  font-family: var(--font-mono), monospace;
+}
+
+/** Общие стили для текстового описания группы с тегами и тезисов */
+.text {
+//  font-size: var(--font-size-s);
+  font-weight: 300;
+  margin-top: auto;
+}
+
+/**
+ * Индивидуальные стили для тезисов в карточках Soft Skills и Fintech
+ * - класс используется для кастомизации буллитов
+ */
+.textOnly {
+  position: relative;
+  padding-left: 1.25rem; // отступ под буллит
+  line-height: 1.5; // фиксированный line-height для точного расчета центра
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.55em; // центрирование относительно первой строки текста
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+
+    /* Цвет — ваш акцентный из темы */
+    background-color: var(--text-accent);
+  }
+}

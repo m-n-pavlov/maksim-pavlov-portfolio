@@ -1,0 +1,76 @@
+@use "@/app/styles/variables" as v;
+
+.burger {
+  /** Базовые размеры и сброс дефолтных стилей кнопки */
+  position: relative; // делаем контейнер системой координат
+  width: 30px; // ширина контейнера
+  height: 20px; // высота контейнера
+  padding: 0; // внутренние отступы
+  background: none; // ✅ есть в normalize
+  border: none; // ✅ есть в normalize
+  cursor: pointer; // ✅ есть в normalize
+
+  /** Флекс-контейнер для вертикального распределения линий */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  /** Убирает задержку клика на мобильных устройствах */
+  touch-action: manipulation;
+
+  .line {
+    display: block; // делаем блочным элементом
+    width: 100%; // ширина = ширине контейнера
+    height: 2px; // толщина линий
+    background-color: currentColor; // наследует цвет текста родителя
+    border-radius: 2px; // скругление линий
+
+    /**
+     * Анимация через GPU-свойства (transform, opacity)
+     * - используем cubic-bezier для премиального ощущения движения
+     */
+    transition:
+      transform var(--transition-duration) var(--transition-curve),
+      opacity var(--transition-duration) var(--transition-curve);
+
+    /** Подсказка браузеру (подготовка GPU) */
+    will-change: transform, opacity;
+  }
+
+  /**
+   * Состояние открытого меню (крестик)
+   * - расчет смещения для центра: (высота 20px - высота линии 2px) / 2 = 9px
+   */
+  &.open {
+    .line {
+      &:nth-child(1) {
+        /* Сдвигаем вниз в центр и поворачиваем */
+        transform: translateY(9px) rotate(45deg);
+      }
+
+      &:nth-child(2) {
+        /* Линия исчезает и плавно уходит влево для динамики */
+        opacity: 0;
+      }
+
+      &:nth-child(3) {
+        /* Сдвигаем вверх в центр и поворачиваем в обратную сторону */
+        transform: translateY(-9px) rotate(-45deg);
+      }
+    }
+  }
+
+  /** Доступность и ховеры */
+  @media (hover: hover) {
+    &:hover .line {
+      opacity: 0.8;
+    }
+  }
+
+  /** Стили фокуса для навигации с клавиатуры */
+  &:focus-visible {
+    outline: 2px solid red;
+    outline-offset: 4px;
+    border-radius: 2px;
+  }
+}
