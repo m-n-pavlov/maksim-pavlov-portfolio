@@ -1,11 +1,15 @@
 import { TechIcons } from '@/shared/assets/icons'; // импортируем группу Tech-иконок
 import type { Project } from './types';
 
+import skillsSwap from '@/shared/assets/images/skills-swap.webp';
+import stellarBurgers from '@/shared/assets/images/stellar-burgers.webp';
+import webLarek from '@/shared/assets/images/web-larek.webp';
+
 export const PROJECTS_LIST = [
   {
     id: '1',
     title: 'Skills Swap',
-    gifUrl: 'src/shared/assets/images/skills-swap.webp',
+    gifUrl: skillsSwap,
     demoUrl: 'https://skills-swap-m-pavlov.vercel.app',
     githubUrl: 'https://github.com/m-n-pavlov/skills-swap',
     description: 'Платформа для обмена навыками между пользователями с поиском и фильтрацией.',
@@ -31,7 +35,7 @@ export const PROJECTS_LIST = [
   {
     id: '2',
     title: 'Stellar Burgers',
-    gifUrl: 'src/shared/assets/images/stellar-burgers.webp',
+    gifUrl: stellarBurgers,
     demoUrl: 'https://m-n-pavlov.github.io/stellar-burgers/',
     githubUrl: 'https://github.com/m-n-pavlov/stellar-burgers',
     description: 'Интерактивный конструктор космических бургеров с авторизацией и лентой заказов.',
@@ -53,7 +57,7 @@ export const PROJECTS_LIST = [
   {
     id: '3',
     title: 'WEB-ларёк',
-    gifUrl: 'src/shared/assets/images/web-larek.webp',
+    gifUrl: webLarek,
     demoUrl: 'https://m-n-pavlov.github.io/web-larek/',
     githubUrl: 'https://github.com/m-n-pavlov/web-larek',
     description: 'Интернет-магазин с каталогом товаров, возможностью добавить товары в корзину и сделать заказ.',

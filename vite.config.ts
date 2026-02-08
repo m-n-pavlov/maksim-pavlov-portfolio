@@ -5,6 +5,7 @@ import svgr from 'vite-plugin-svgr';
 
 /* Экспорт конфигурации Vite */
 export default defineConfig({
+  base: '/maksim-pavlov-portfolio/',
   plugins: [react(), svgr()], // подключаем плагин React
   resolve: {
     alias: {
