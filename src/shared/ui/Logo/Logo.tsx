@@ -17,7 +17,7 @@ interface LogoProps {
 export const Logo = ({ className }: LogoProps) => {
   return (
     <Link
-      to={import.meta.env.BASE_URL} // import.meta.env.BASE_URL возьмет путь из vite.config ( /maksim-pavlov-portfolio/ )
+      to="/"
       className={clsx(s.logo, className)}
       aria-label="На главную страницу"
     >
