@@ -9,6 +9,6 @@ export const HERO_DATA = {
   firstName: 'Максим',
   lastName: 'Павлов',
   avatar: MyAvatar,
-  tagline: 'Frontend Developer | Fintech Expert | Ex-Sber Team Lead',
+  tagline: 'Frontend Developer | Fintech Expert',
   summary: 'Опыт внедрения масштабных финтех-решений позволяет мне создавать технологическую основу продуктов, масштаб которых понимаю изнутри, говорить на одном языке с бизнесом и проектировать архитектуру фронтенда, которая точно соответствует целям продукта и ожиданиям пользователей.',
 } as const satisfies Hero;
